@@ -24,9 +24,11 @@ services:
 
   frontend:
     build: ./frontend
+    container_name: frontend
     ports:
       - 3000:3000
     networks:
+      - spring_net
       - frontend_net
 
 networks:

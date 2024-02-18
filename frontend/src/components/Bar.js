@@ -26,7 +26,7 @@ function Bar({ users, userId, setUserId, setUsers }) {
   }, [userId, users]); // empty dependency array means this effect runs once when the component mounts
 
   function fetchUsers() {
-    fetch(`http://127.0.0.1:8080/users`, {
+    fetch(`http://backend:8080/users`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -44,7 +44,7 @@ function Bar({ users, userId, setUserId, setUsers }) {
     console.log("user ktore chcem updatovat"  + JSON.stringify(user))
     let userForUpdate = { name: user.name, email: user.email, status: user.status, x: user.x, y: user.y};
     console.log("update user body" + JSON.stringify(userForUpdate))
-    fetch("http://127.0.0.1:8080/update-user?id=" + userId, {
+    fetch("http://backend:8080/update-user?id=" + userId, {
       method: "PUT",
       body: JSON.stringify(userForUpdate),
     }).then(() => {

@@ -13,7 +13,7 @@ export default function UserRow(probs) {
     e.preventDefault();
     let newUser = { name: name, email: email, status: status, x: x, y: y };
 
-    fetch("http://127.0.0.1:8080/create-user", {
+    fetch("backend:8080/create-user", {
       method: "POST",
       body: JSON.stringify(newUser),
     })

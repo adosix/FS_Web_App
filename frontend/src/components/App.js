@@ -23,7 +23,7 @@ function App({ userId, setUserId }) {
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/users")
+    fetch("http://backend:8080/users")
       .then((response) => response.json())
       .then((data) => {
         for (const element of data) {
@@ -34,7 +34,7 @@ function App({ userId, setUserId }) {
   }, []);
 
   function deleteUser(value) {
-    fetch("http://127.0.0.1:8080/delete-user?id=" + value.id, {
+    fetch("http://backend:8080/delete-user?id=" + value.id, {
       method: "DELETE",
     }).then(() => {
       setUsers((oldValues) => {
@@ -55,7 +55,7 @@ function App({ userId, setUserId }) {
 
   function updateUser(id, name, email, status, x, y) {
     let userForUpdate = { name: name, email: email, status: status, x: x, y: y};
-    fetch("http://127.0.0.1:8080/update-user?id=" + id, {
+    fetch("http://backend:8080/update-user?id=" + id, {
       method: "PUT",
       body: JSON.stringify(userForUpdate),
     }).then(() => {
