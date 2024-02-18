@@ -4,12 +4,23 @@ import UserRow from "./UserRow";
 import NewUser from "./NewUser";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUserId } from '../actions/user';
 
 
-export default function App({ children }) {
+function App({ userId, setUserId }) {
   const [users, setUsers] = useState([]);
   const [newUsers, setNewUsers] = useState([]);
   const [newUserMaxID, setnewUserMaxID] = useState(0);
+  const [inputUserId, setInputUserId] = useState('');
+
+  const handleUserIdChange = (e) => {
+    setInputUserId(e.target.value);
+  };
+
+  const handleSetUserId = () => {
+    setUserId(inputUserId);
+  };
 
   useEffect(() => {
     fetch("http://127.0.0.1:8080/users")
@@ -78,9 +89,10 @@ export default function App({ children }) {
   }
 
   return (
-    
     <div className="App">
-
+      <p>User ID: {userId}</p>
+      <input type="text" value={inputUserId} onChange={handleUserIdChange} />
+      <button onClick={handleSetUserId}>Set User ID</button>
       <header className="App-header">
         <p>User Dashboard</p>
       </header>
@@ -110,4 +122,19 @@ export default function App({ children }) {
       </div>
     </div>
   );
+
+
 }
+
+const mapStateToProps = (state) => {
+  return {
+    userId: state.user.userId,
+  };
+};
+
+
+const mapDispatchToProps = {
+  setUserId
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

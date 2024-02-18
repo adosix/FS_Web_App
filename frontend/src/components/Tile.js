@@ -1,20 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-class Square extends React.Component {
-  state = {
-    tile: this.props.tile
-  }
+const Square = ({ x, y, tile, selectedSquare }) => {
+  const isSelectedSquare = selectedSquare.some(position => position[0] === x && position[1] === y);
 
-  render() {
-    return (
-      <div
-        className={this.props.selectedSquare[0] === this.props.x &&
-           this.props.selectedSquare[1] === this.props.y ?
-           `selected square ${this.state.tile}` : `square ${this.state.tile}`}>
-      </div>
-    )
-  }
+  return (
+    <div
+      className={`square ${tile} ${isSelectedSquare ? 'selected' : ''}`}
+    ></div>
+  );
+};
 
-}
-
-export default Square
+export default Square;
