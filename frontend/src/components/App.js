@@ -42,8 +42,8 @@ export default function App({ children }) {
     setUsers((prevUsers) => [...prevUsers]);
   }
 
-  function updateUser(id, name, email, status) {
-    let userForUpdate = { name: name, email: email, status: status };
+  function updateUser(id, name, email, status, x, y) {
+    let userForUpdate = { name: name, email: email, status: status, x: x, y: y};
     fetch("http://127.0.0.1:8080/update-user?id=" + id, {
       method: "PUT",
       body: JSON.stringify(userForUpdate),
@@ -53,6 +53,8 @@ export default function App({ children }) {
           element.name = name;
           element.email = email;
           element.status = status;
+          element.x = x;
+          element.y = y;
           editModeChange(id);
           break;
         }

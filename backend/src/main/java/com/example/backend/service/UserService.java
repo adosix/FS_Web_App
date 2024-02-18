@@ -78,11 +78,19 @@ public class UserService {
             user.setStatus(newUserInformation.getStatus());
         }
 
+        if(newUserInformation.getX() != null){
+            user.setX(newUserInformation.getX());
+        }
+
+        if(newUserInformation.getY() != null){
+            user.setY(newUserInformation.getY());
+        }
+
         return user;
     }
 
     private UserEntity userEntityMapper(User user){
-        return new UserEntity(user.getName(),user.getEmail(), user.getStatus());
+        return new UserEntity(user.getName(),user.getEmail(), user.getStatus(), user.getX(), user.getY());
     }
 
     private Optional<User> jsonToUserModel(String jsonUser){

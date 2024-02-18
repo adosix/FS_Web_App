@@ -6,10 +6,12 @@ export default function UserRow(probs) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let newUser = { name: name, email: email, status: status };
+    let newUser = { name: name, email: email, status: status, x: x, y: y };
 
     fetch("http://127.0.0.1:8080/create-user", {
       method: "POST",
@@ -24,6 +26,8 @@ export default function UserRow(probs) {
           name: name,
           email: email,
           status: status,
+          x: x,
+          y: y,
           viewMode: true,
         });
       })
@@ -57,6 +61,22 @@ export default function UserRow(probs) {
             type="text"
             name="status"
             onChange={(event) => setStatus(event.target.value)}
+          />
+        </div>
+        <div className="InputBox">
+          <label>X:</label>
+          <input
+            type="number"
+            name="X"
+            onChange={(event) => setX(event.target.value)}
+          />
+        </div>
+        <div className="InputBox">
+          <label>Y:</label>
+          <input
+            type="number"
+            name="Y"
+            onChange={(event) => setY(event.target.value)}
           />
         </div>
         <button type="submit">Submit</button>

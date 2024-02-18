@@ -12,11 +12,15 @@ public class UserEntity {
     private String name;
     private String email;
     private String status;
+    private Integer x;
+    private Integer y;
 
-    public UserEntity(String name, String email, String status) {
+    public UserEntity(String name, String email, String status, Integer x, Integer y) {
         this.name = name;
         this.email = email;
         this.status = status;
+        this.x = x;
+        this.y = y;
     }
 
     public UserEntity() {
@@ -49,5 +53,21 @@ public class UserEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getX() {
+        return x;
+    }
+
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public Integer getY() {
+        return y;
+    }
+
+    public void setY(Integer y) {
+        this.y = y;
     }
 }

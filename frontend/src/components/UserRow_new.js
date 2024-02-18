@@ -1,16 +1,14 @@
-import React from "react";
-import { useState } from "react";
-import "../App.css";
+import React, { useState } from 'react';
 
 export default function UserRow(probs) {
-  const [id, setId] = useState(probs.user.id);
-  const [name, setName] = useState(probs.user.name);
-  const [email, setEmail] = useState(probs.user.email);
-  const [status, setStatus] = useState(probs.user.status);
-  const [x, setX] = useState(probs.user.x);
-  const [y, setY] = useState(probs.user.y);
+  const [id, setId] = useState(probs.id); // Corrected from probs.user.id
+  const [name, setName] = useState(probs.name);
+  const [email, setEmail] = useState(probs.email);
+  const [status, setStatus] = useState(probs.status);
+  const [x, setX] = useState(probs.x);
+  const [y, setY] = useState(probs.y);
 
-  if (probs.user.viewMode) {
+  if (probs.viewMode) { // Corrected from probs.user.viewMode
     return (
       <div className="User">
         <p style={{ margin: 20 }}>{id}</p>
@@ -19,10 +17,8 @@ export default function UserRow(probs) {
         <p style={{ margin: 20 }}>{status}</p>
         <p style={{ margin: 20 }}>{x}</p>
         <p style={{ margin: 20 }}>{y}</p>
-        <button onClick={() => probs.deleteUser(probs.user)}>Delete</button>
-        <button onClick={() => probs.editModeChange(probs.user.id)}>
-          Edit
-        </button>
+        <button onClick={() => probs.deleteUser(probs)}>Delete</button>
+        <button onClick={() => probs.editModeChange(id)}>Edit</button>
       </div>
     );
   } else {
@@ -62,7 +58,7 @@ export default function UserRow(probs) {
             <input
               type="text"
               name="x"
-              value={x}
+              value={status}
               onChange={(event) => setX(event.target.value)}
             />
           </div>
@@ -71,7 +67,7 @@ export default function UserRow(probs) {
             <input
               type="text"
               name="y"
-              value={y}
+              value={status}
               onChange={(event) => setY(event.target.value)}
             />
           </div>
@@ -79,9 +75,7 @@ export default function UserRow(probs) {
         <button onClick={() => probs.updateUser(id, name, email, status,x, y)}>
           Update
         </button>
-        <button onClick={() => probs.editModeChange(probs.user.id)}>
-          Restore
-        </button>
+        <button onClick={() => probs.editModeChange(id)}>Restore</button>
       </div>
     );
   }
